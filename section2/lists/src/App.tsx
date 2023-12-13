@@ -1,16 +1,14 @@
-import { LargeAuthorListItem } from "./components/authors/LargeListItem";
-import { SmallAuthorListItem } from "./components/authors/SmallListItem";
+import { Modal } from "./components/Modal";
 import { LargeBookListItems } from "./components/books/LargeListItem";
-import { SmallBookListItem } from "./components/books/SmallListItem";
-import { authors } from "./components/data/author";
 import { books } from "./components/data/books";
-import { NumberedList } from "./components/lists/Numbered";
-import { RegularList } from "./components/lists/Regular";
 
 function App() {
   return (
     <>
-      <RegularList
+      <Modal>
+        <LargeBookListItems book={books[0]} />
+      </Modal>
+      {/* <RegularList
         items={authors}
         sourceName="author"
         ItemComponent={SmallAuthorListItem}
@@ -29,7 +27,7 @@ function App() {
         items={books}
         sourceName="book"
         ItemComponent={LargeBookListItems}
-      />
+      /> */}
     </>
   );
 }
