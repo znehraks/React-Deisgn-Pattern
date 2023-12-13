@@ -3,10 +3,10 @@ import React, { useEffect, useState } from "react";
 import { UserInfoProps } from "./UserInfo";
 
 type CurrentUserLoaderProps = {
-  children: React.ReactNode;
+  children: React.ReactElement<UserInfoProps>;
 };
 export const CurrentUserLoader = ({ children }: CurrentUserLoaderProps) => {
-  const [user, setUser] = useState<UserInfoProps["user"]>();
+  const [user, setUser] = useState<UserInfoProps["user"] | null>(null);
   useEffect(() => {
     (async () => {
       const response = await axios.get("http://localhost:9090/current-user");
@@ -20,6 +20,7 @@ export const CurrentUserLoader = ({ children }: CurrentUserLoaderProps) => {
         if (React.isValidElement(child)) {
           return React.cloneElement(child, { user });
         }
+        return child;
       })}
     </>
   );

@@ -1,5 +1,5 @@
 export type UserInfoProps = {
-  user: {
+  user?: {
     name: string;
     age: number;
     country: string;
