@@ -1,5 +1,5 @@
 type BookInfoProps = {
-  book: {
+  book?: {
     name: string;
     price: number;
     title: string;

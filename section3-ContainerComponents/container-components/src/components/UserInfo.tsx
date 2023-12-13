@@ -1,12 +1,9 @@
+import { UserType } from "../@types";
+
 export type UserInfoProps = {
-  user?: {
-    name: string;
-    age: number;
-    country: string;
-    books: string[];
-  };
+  user?: UserType;
 };
-export const UsertInfo = ({ user }: UserInfoProps) => {
+export const UserInfo = ({ user }: UserInfoProps) => {
   if (!user) return <h2>Loading...</h2>;
   const { name, age, country, books } = user || {};
   return (
