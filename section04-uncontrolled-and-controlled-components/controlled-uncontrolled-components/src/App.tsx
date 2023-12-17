@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // import { ControlledForm } from "./components/ControlledForm";
 // import { UnControlledModal } from "./components/UnControlledModal";
 // import { ControlledModal } from "./components/ControlledModal";
@@ -5,12 +6,12 @@
 // import { useState } from "react";
 import { UnControlledFlow } from "./components/UnControlledFlow";
 
-type StepProps = { goNext: () => void };
+type StepProps = { goNext?: (dataFromStep: any) => void };
 const StepOne = ({ goNext }: StepProps) => {
   return (
     <>
       <h1>step #1</h1>
-      <button onClick={goNext}>Next</button>
+      <button onClick={() => goNext?.({ name: "MyName" })}>Next</button>
     </>
   );
 };
@@ -18,7 +19,7 @@ const StepTwo = ({ goNext }: StepProps) => {
   return (
     <>
       <h1>step #2</h1>
-      <button onClick={goNext}>Next</button>
+      <button onClick={() => goNext?.({ age: 20 })}>Next</button>
     </>
   );
 };
@@ -26,7 +27,7 @@ const StepThree = ({ goNext }: StepProps) => {
   return (
     <>
       <h1>step #3</h1>
-      <button onClick={goNext}>Next</button>
+      <button onClick={() => goNext?.({ country: "Korea" })}>Next</button>
     </>
   );
 };
@@ -45,7 +46,12 @@ function App() {
       <ControlledModal show={show} onClose={() => setShow(false)}>
         <h1>!!!!!controlled modal</h1>
       </ControlledModal> */}
-      <UnControlledFlow>
+      <UnControlledFlow
+        onDone={(data) => {
+          console.log(data);
+          alert("Yi !!");
+        }}
+      >
         <StepOne />
         <StepTwo />
         <StepThree />
