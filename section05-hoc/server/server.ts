@@ -50,7 +50,7 @@ type TBook = {
   title: string;
   price: number;
 };
-const books: TBook[] = [
+let books: TBook[] = [
   {
     id: "1",
     name: "To Kill a Mockingbird",
@@ -97,6 +97,14 @@ app.get("/books", (req, res) => res.json(books));
 
 app.get("/books/:id", (req, res) => {
   const { id } = req.params;
+  res.json(books.find((book) => book.id === id));
+});
+app.post("/books/:id", (req, res) => {
+  const { id } = req.params;
+  const { book: editedBook } = req.body;
+
+  books = books.map((book) => (book.id === id ? editedBook : book));
+
   res.json(books.find((book) => book.id === id));
 });
 

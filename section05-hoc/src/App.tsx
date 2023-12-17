@@ -2,6 +2,7 @@ import { includeUser } from "./components/IncludeUser";
 import { logProps } from "./components/LogProps";
 import { UserInfo } from "./components/UserInfo";
 import { UserInfoForm } from "./components/UserForm";
+import { BookInfoForm } from "./components/BookForm";
 
 const UserInfoWrapper = logProps(UserInfo);
 const UserInfoWithLoader = includeUser(UserInfo, "1");
@@ -15,6 +16,8 @@ function App() {
       <UserInfoWithLoader />
       <br />
       <UserInfoForm />
+      <br />
+      <BookInfoForm />
     </>
   );
 }

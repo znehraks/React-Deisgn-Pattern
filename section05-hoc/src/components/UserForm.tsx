@@ -1,5 +1,5 @@
+import { includeUpdatableResource } from "./IncludeUpdatableResource";
 import { UserType } from "./UserInfo";
-import { includeUpdatableUser } from "./includeUpdatableUser";
 
 type UserInfoFormProps = {
   user?: UserType;
@@ -8,7 +8,7 @@ type UserInfoFormProps = {
   onResetUser?: () => void;
 };
 
-export const UserInfoForm = includeUpdatableUser(
+export const UserInfoForm = includeUpdatableResource(
   ({ user, onChangeUser, onPostUser, onResetUser }: UserInfoFormProps) => {
     const { name, age } = user || {};
 
@@ -37,5 +37,6 @@ export const UserInfoForm = includeUpdatableUser(
       <h3>Loading...</h3>
     );
   },
-  "3"
+  "/users/3",
+  "user"
 );
