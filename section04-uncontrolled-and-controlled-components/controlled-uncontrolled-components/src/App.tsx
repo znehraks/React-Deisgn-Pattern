@@ -4,7 +4,9 @@
 // import { ControlledModal } from "./components/ControlledModal";
 // import { UnControlledForm } from "./components/UnControlledForm";
 // import { useState } from "react";
+import { useState } from "react";
 import { UnControlledFlow } from "./components/UnControlledFlow";
+import { ControlledFlow } from "./components/ControlledFlow";
 
 type StepProps = { goNext?: (dataFromStep: any) => void };
 const StepOne = ({ goNext }: StepProps) => {
@@ -19,7 +21,7 @@ const StepTwo = ({ goNext }: StepProps) => {
   return (
     <>
       <h1>step #2</h1>
-      <button onClick={() => goNext?.({ age: 20 })}>Next</button>
+      <button onClick={() => goNext?.({ age: 23 })}>Next</button>
     </>
   );
 };
@@ -27,12 +29,31 @@ const StepThree = ({ goNext }: StepProps) => {
   return (
     <>
       <h1>step #3</h1>
+      <button onClick={() => goNext?.({})}>Next</button>
+    </>
+  );
+};
+
+const StepFourth = ({ goNext }: StepProps) => {
+  return (
+    <>
+      <h1>step #4</h1>
       <button onClick={() => goNext?.({ country: "Korea" })}>Next</button>
     </>
   );
 };
 function App() {
   // const [show, setShow] = useState(false);
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [data, setData] = useState<{ [key: string]: any }>({});
+  const [currentStepIndex, setCurrentStepIndex] = useState(0);
+
+  const goNext = (dataFromStep: any) => {
+    setData({ ...data, ...dataFromStep });
+    setCurrentStepIndex((prev) => prev + 1);
+  };
+
   return (
     <>
       {/* <UnControlledForm />
@@ -56,6 +77,13 @@ function App() {
         <StepTwo />
         <StepThree />
       </UnControlledFlow>
+
+      <ControlledFlow currentIndex={currentStepIndex} onNext={goNext}>
+        <StepOne />
+        <StepTwo />
+        {data.age > 25 ? <StepThree /> : null}
+        <StepFourth />
+      </ControlledFlow>
     </>
   );
 }
