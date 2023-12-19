@@ -1,3 +1,4 @@
+import { GreenSmallButton, RedButton } from "./components/Composition";
 import { RecursiveComponent } from "./components/recursive";
 
 const myNestedObject = {
@@ -15,6 +16,8 @@ function App() {
   return (
     <>
       <RecursiveComponent data={myNestedObject} />
+      <RedButton text="It's raining man!" />
+      <GreenSmallButton text="Hallelujah! It's raining man!" />
     </>
   );
 }
